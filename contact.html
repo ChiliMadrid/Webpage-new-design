@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | CM Strength</title>
+<meta name="description" content="Contact CM Strength about coaching, PDF programs, body profile preparation, or training support in Korea.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body data-page="inquire">
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="site-header"></div>
+<div id="page-inquire" class="page active">
+  <div class="inquire-hero">
+    <div class="hero-inner">
+      <div class="section-label"><span class="gold-line"></span><span data-en="Coaching Inquiry" data-ko="코칭 문의">Coaching Inquiry</span></div>
+      <h1 class="display-xl">
+        <span data-en="LET'S" data-ko="함께">LET'S</span><br>
+        <span class="text-gold" data-en="CONNECT" data-ko="시작하자">CONNECT</span>
+      </h1>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="reveal-left">
+          <div class="section-label"><span class="gold-line"></span><span data-en="Details" data-ko="세부 정보">Details</span></div>
+          <div class="contact-info-item">
+            <div class="contact-info-label" data-en="Based In" data-ko="위치">Based In</div>
+            <div class="contact-info-value" data-en="Seoul, South Korea" data-ko="대한민국 서울">Seoul, South Korea</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label" data-en="Fastest Reply" data-ko="가장 빠른 답장">Fastest Reply</div>
+            <div class="contact-info-value">KakaoTalk</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label" data-en="Languages" data-ko="언어">Languages</div>
+            <div class="contact-info-value" data-en="English · Korean" data-ko="영어 · 한국어">English · Korean</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label" data-en="Training Locations" data-ko="훈련 장소">Training Locations</div>
+            <div class="contact-info-value">
+              <span data-en="Seoul — in-person or virtual" data-ko="서울 — 대면 또는 비대면">Seoul — in-person or virtual</span>
+              <span class="location-line" data-en="USA — virtual" data-ko="미국 — 비대면">USA — virtual</span>
+            </div>
+          </div>
+          <div class="contact-note">
+            <p class="text-small" data-en="For the fastest reply, include your goal, timeline, training location, and which coaching tier you are considering." data-ko="빠른 답변을 원하시면 목표, 일정, 훈련 장소, 고려 중인 코칭 등급을 함께 적어 주세요.">For the fastest reply, include your goal, timeline, training location, and which coaching tier you are considering.</p>
+          </div>
+        </div>
+
+        <div class="reveal-right">
+          <div class="section-label"><span class="gold-line"></span><span data-en="Inquiry Form" data-ko="문의 양식">Inquiry Form</span></div>
+          <form class="form-grid" id="contactForm" action="mailto:madridchili96@gmail.com" method="post" enctype="text/plain">
+            <div class="form-field">
+              <label class="form-label" for="contactName" data-en="Full Name" data-ko="성함">Full Name</label>
+              <input class="form-input" id="contactName" name="name" type="text" autocomplete="name" required data-placeholder-en="Your name" data-placeholder-ko="성함">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="contactEmail" data-en="Email" data-ko="이메일">Email</label>
+              <input class="form-input" id="contactEmail" name="email" type="email" autocomplete="email" required data-placeholder-en="your@email.com" data-placeholder-ko="your@email.com">
+            </div>
+            <div class="form-field full">
+              <label class="form-label" for="contactMethod" data-en="Phone / KakaoTalk" data-ko="전화 / 카카오톡">Phone / KakaoTalk</label>
+              <input class="form-input" id="contactMethod" name="contact" type="text" autocomplete="tel" data-placeholder-en="+82 or KakaoTalk ID" data-placeholder-ko="전화번호 또는 카카오톡 ID">
+            </div>
+            <div class="form-field full">
+              <div class="form-label" id="readyGroupLabel" data-en="Financial Readiness" data-ko="결제 준비 상태">Financial Readiness</div>
+              <input type="hidden" name="financialReadiness" data-radio-input="readyGroup">
+              <div class="radio-group" id="readyGroup" role="group" aria-labelledby="readyGroupLabel">
+                <button class="radio-btn" type="button" data-radio-group="readyGroup" data-value="Ready now" data-en="Ready now" data-ko="지금 시작 가능">Ready now</button>
+                <button class="radio-btn" type="button" data-radio-group="readyGroup" data-value="Comparing options" data-en="Comparing options" data-ko="옵션 비교 중">Comparing options</button>
+                <button class="radio-btn" type="button" data-radio-group="readyGroup" data-value="Need pricing first" data-en="Need pricing first" data-ko="가격 먼저 확인 필요">Need pricing first</button>
+              </div>
+            </div>
+            <div class="form-field full">
+              <div class="form-label" id="stageGroupLabel" data-en="Stage of Hiring" data-ko="상담 단계">Stage of Hiring</div>
+              <input type="hidden" name="stageOfHiring" data-radio-input="stageGroup">
+              <div class="radio-group" id="stageGroup" role="group" aria-labelledby="stageGroupLabel">
+                <button class="radio-btn" type="button" data-radio-group="stageGroup" data-value="Ready to start" data-en="Ready to start" data-ko="바로 시작하고 싶음">Ready to start</button>
+                <button class="radio-btn" type="button" data-radio-group="stageGroup" data-value="Have questions first" data-en="Have questions first" data-ko="먼저 질문이 있음">Have questions first</button>
+                <button class="radio-btn" type="button" data-radio-group="stageGroup" data-value="Looking for the right fit" data-en="Looking for the right fit" data-ko="맞는 코치를 찾는 중">Looking for the right fit</button>
+              </div>
+            </div>
+            <div class="form-field full">
+              <label class="form-label" for="contactMessage" data-en="Message" data-ko="메시지">Message</label>
+              <textarea class="form-textarea" id="contactMessage" name="message" required data-placeholder-en="Share your goal, timeline, training location, and which tier you are considering..." data-placeholder-ko="목표, 일정, 훈련 장소, 고려 중인 코칭 등급을 알려 주세요..."></textarea>
+            </div>
+            <div class="form-field full">
+              <button class="btn btn-gold btn-full" type="submit">
+                <span data-en="Send Message" data-ko="메시지 전송">Send Message</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+</div>
+<div id="site-footer"></div>
+</body>
+</html>
+
+
+
+
+
+
