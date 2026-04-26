@@ -411,7 +411,7 @@ p { color: var(--text-muted); line-height: 1.85; }
   bottom: 0;
   display: flex;
   width: max-content;
-  animation: marquee 20s linear infinite;
+  animation: marquee 40s linear infinite;
 }
 .hero-photo-track img {
   flex: 0 0 clamp(280px, 34vw, 560px);
@@ -1230,7 +1230,7 @@ select:focus-visible,
     animation: marquee 28s linear infinite !important;
   }
   .hero-photo-track {
-    animation: marquee 20s linear infinite !important;
+    animation: marquee 40s linear infinite !important;
   }
   .floating-social.is-closing {
     animation: socialDescend 0.48s ease-in forwards !important;
