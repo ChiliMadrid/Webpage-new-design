@@ -652,7 +652,7 @@ p { color: var(--text-muted); line-height: 1.85; }
   background:
     linear-gradient(90deg, rgba(7,7,7,0.96) 0%, rgba(7,7,7,0.78) 48%, rgba(7,7,7,0.46) 100%),
     linear-gradient(0deg, rgba(7,7,7,0.9), rgba(7,7,7,0.12)),
-    url('../assets/apply-training-banner.jpg') center 44% / cover no-repeat;
+    url('../assets/liftatx/IMG_9100.JPG') center 44% / cover no-repeat;
 }
 .packages-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
