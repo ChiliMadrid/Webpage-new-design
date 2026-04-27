@@ -47,6 +47,7 @@ const PAGE_ROUTES = {
   programs: 'pdf-programs.html',
   blog: 'blog.html',
   cart: 'cart.html',
+  intake: 'intake.html',
   inquire: 'contact.html'
 };
 
@@ -131,7 +132,7 @@ function saveCart(items) {
 function addToCart(name, price, type, file) {
   const items = getCart();
   const id = globalThis.crypto && crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
-  items.push({ id, name, price: parseWon(price), type, file: file || '', currency: currencyFromPrice(price, type) });
+  items.push({ id, name, price: parseWon(price), type, file: file || '', currency: currencyFromPrice(price, type), purchased: false });
   saveCart(items);
   renderCart();
   if (currentPageName() !== 'cart') window.location.href = 'cart.html';
@@ -168,7 +169,8 @@ function renderCart() {
       const actions = document.createElement('div');
       const price = document.createElement('span');
       const remove = document.createElement('button');
-      const fileLink = item.file ? document.createElement('a') : null;
+      const fileLink = item.file && item.purchased ? document.createElement('a') : null;
+      const locked = item.file && !item.purchased ? document.createElement('span') : null;
       const itemCurrency = currencyForItem(item);
       name.textContent = item.name;
       type.textContent = localizeCartType(item.type);
@@ -180,6 +182,10 @@ function renderCart() {
         fileLink.rel = 'noreferrer';
         fileLink.textContent = currentLang === 'ko' ? 'PDF 열기' : 'Open PDF';
       }
+      if (locked) {
+        locked.className = 'cart-locked';
+        locked.textContent = currentLang === 'ko' ? '구매 후 다운로드' : 'Locked until purchase';
+      }
       remove.className = 'cart-remove';
       remove.type = 'button';
       remove.textContent = 'x';
@@ -188,11 +194,28 @@ function renderCart() {
       details.append(name, document.createElement('br'), type);
       actions.className = 'cart-item-actions';
       if (fileLink) actions.append(fileLink);
+      if (locked) actions.append(locked);
       actions.append(price, remove);
       li.append(details, actions);
       list.appendChild(li);
     });
   });
+}
+
+function checkoutCart() {
+  const items = getCart();
+  if (!items.length) return;
+
+  const hasCoaching = items.some(item => item.type === 'Coaching');
+  const nextItems = items.map(item => (
+    item.type === 'PDF Program' ? { ...item, purchased: true } : item
+  ));
+  saveCart(nextItems);
+  renderCart();
+
+  if (hasCoaching) {
+    window.location.href = sitePath('intake.html');
+  }
 }
 
 function wireCart() {
@@ -208,6 +231,10 @@ function wireCart() {
       saveCart([]);
       renderCart();
     });
+  });
+
+  document.querySelectorAll('[data-cart-checkout]').forEach(btn => {
+    btn.addEventListener('click', checkoutCart);
   });
 }
 
@@ -404,6 +431,23 @@ function wireContactForm() {
   });
 }
 
+function wireIntakeForm() {
+  const form = document.getElementById('intakeForm');
+  if (!form) return;
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const lines = ['Comprehensive Client Intake Assessment', ''];
+    for (const [key, value] of data.entries()) {
+      lines.push(`${key}: ${value || ''}`);
+    }
+    const subject = encodeURIComponent('CM Strength client intake form');
+    const body = encodeURIComponent(lines.join('\n'));
+    window.location.href = `mailto:madridchili96@gmail.com?subject=${subject}&body=${body}`;
+  });
+}
+
 function initFloatingSocials() {
   const social = document.querySelector('.floating-social');
   const close = document.querySelector('.float-close');
@@ -491,6 +535,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initLogoFallback();
   wireSharedEvents();
   wireContactForm();
+  wireIntakeForm();
   initFloatingSocials();
   wireCart();
   updateCalc();

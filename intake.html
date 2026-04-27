@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Intake | CM Strength</title>
+<meta name="description" content="CM Strength comprehensive client intake assessment for coaching clients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body data-page="intake">
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="site-header"></div>
+<div id="page-intake" class="page active">
+  <div class="inquire-hero">
+    <div class="hero-inner">
+      <div class="section-label"><span class="gold-line"></span><span>Client Intake</span></div>
+      <h1 class="display-xl">
+        <span>INTAKE</span><br>
+        <span class="text-gold">ASSESSMENT</span>
+      </h1>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <p class="intro-copy">Please answer all questions with the utmost honesty and detail. This information is mandatory and confidential, as it forms the scientific basis for designing a safe, effective, and highly personalized training program.</p>
+
+      <form class="form-grid intake-form" id="intakeForm" action="mailto:madridchili96@gmail.com" method="post" enctype="text/plain">
+        <div class="intake-section form-field full">
+          <h2>Health & Safety</h2>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="medicalHistory">Medical History</label>
+          <textarea class="form-textarea" id="medicalHistory" name="Medical History" required placeholder="Any pre-existing or chronic medical conditions?"></textarea>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="medications">Medications</label>
+          <textarea class="form-textarea" id="medications" name="Medications" required placeholder="List all current medications and supplements, dosage, and reason."></textarea>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="injuries">Injuries</label>
+          <textarea class="form-textarea" id="injuries" name="Injuries" required placeholder="Describe injuries or chronic pain points, when they occurred, and current status."></textarea>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="allergies">Allergies</label>
+          <textarea class="form-textarea" id="allergies" name="Allergies" required placeholder="Medication, food, or environmental allergies."></textarea>
+        </div>
+
+        <div class="intake-section form-field full">
+          <h2>Lifestyle & Habit Assessment</h2>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="sleep">Sleep</label>
+          <textarea class="form-textarea" id="sleep" name="Sleep" required placeholder="Average hours per night and rested rating from 1-10."></textarea>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="nutrition">Nutrition</label>
+          <textarea class="form-textarea" id="nutrition" name="Nutrition" required placeholder="Typical day of eating, meal timing, food groups, calories, restrictions."></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="stressLevel">Stress Level</label>
+          <input class="form-input" id="stressLevel" name="Stress Level" type="text" required placeholder="1-10">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="activityOutsideTraining">Activity Outside Training</label>
+          <input class="form-input" id="activityOutsideTraining" name="Activity Outside Training" type="text" required placeholder="Walking, sports, job activity, etc.">
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="stressors">Primary Stressors</label>
+          <textarea class="form-textarea" id="stressors" name="Primary Stressors" required placeholder="Main non-fitness stressors right now."></textarea>
+        </div>
+
+        <div class="intake-section form-field full">
+          <h2>Logistics & Commitment</h2>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="legalName">Legal Name</label>
+          <input class="form-input" id="legalName" name="Legal Name" type="text" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="preferredName">Preferred Name</label>
+          <input class="form-input" id="preferredName" name="Preferred Name" type="text">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="primaryEmail">Primary Email</label>
+          <input class="form-input" id="primaryEmail" name="Primary Email" type="email" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="phoneNumber">Phone Number</label>
+          <input class="form-input" id="phoneNumber" name="Phone Number" type="tel" autocomplete="tel" required>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="commitment">Commitment</label>
+          <textarea class="form-textarea" id="commitment" name="Commitment" required placeholder="How many days per week can you commit to training and behavioral adjustments?"></textarea>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="accountability">Accountability</label>
+          <select class="form-select2" id="accountability" name="Accountability" required>
+            <option value="">Select one</option>
+            <option value="Yes">Yes, I am willing to track and report daily.</option>
+            <option value="No">No, I am not willing to track and report daily.</option>
+          </select>
+        </div>
+
+        <div class="intake-section form-field full">
+          <h2>Goals & Expectations</h2>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="primaryGoal">Primary Goal</label>
+          <textarea class="form-textarea" id="primaryGoal" name="Primary Goal" required placeholder="Your single biggest measurable goal for the next 6-12 months."></textarea>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="motivation">Motivation</label>
+          <textarea class="form-textarea" id="motivation" name="Motivation" required placeholder="What motivated you to start training today?"></textarea>
+        </div>
+        <div class="form-field full">
+          <label class="form-label" for="expectations">Expectations & Fears</label>
+          <textarea class="form-textarea" id="expectations" name="Expectations and Fears" required placeholder="What do you expect to gain, and what are your biggest fears about starting?"></textarea>
+        </div>
+        <div class="form-field full">
+          <button class="btn btn-gold btn-full" type="submit">
+            <span>Send Intake Form</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+<div id="site-footer"></div>
+</body>
+</html>

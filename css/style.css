@@ -869,6 +869,24 @@ p { color: var(--text-muted); line-height: 1.85; }
   border-color: var(--gold); color: var(--gold);
   background: var(--gold-bg);
 }
+.intake-form {
+  margin-top: 44px;
+}
+.intake-section {
+  border-top: 1px solid var(--border);
+  padding-top: 34px;
+  margin-top: 22px;
+}
+.intake-section:first-child {
+  margin-top: 0;
+}
+.intake-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: var(--white);
+}
 
 /* ─── ═══════════ PDF PROGRAMS ═══════════ ─── */
 .programs-grid {
@@ -1309,6 +1327,7 @@ footer {
 .cart-item-actions { display:flex; align-items:center; gap:14px; white-space:nowrap; }
 .cart-file-link { color:var(--gold); text-decoration:none; font-family:var(--font-display); letter-spacing:0.08em; text-transform:uppercase; font-size:0.82rem; border:1px solid var(--gold-dim); padding:7px 12px; }
 .cart-file-link:hover { background:var(--gold-bg); border-color:var(--gold); }
+.cart-locked { color:var(--text-muted); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; border:1px solid var(--border); padding:7px 12px; }
 .cart-remove { width:30px; height:30px; border-radius:50%; border:1px solid var(--border); background:transparent; color:var(--gold); cursor:pointer; }
 .cart-summary { margin-top:24px; display:flex; justify-content:space-between; align-items:center; gap:20px; font-family:var(--font-display); letter-spacing:0.08em; font-size:1.2rem; }
 .btn-add-cart { margin-top:14px; width:100%; }
