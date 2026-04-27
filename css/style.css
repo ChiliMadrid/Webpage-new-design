@@ -122,18 +122,19 @@ nav.scrolled {
 }
 .nav-logo span { color: var(--gold); }
 .logo-mark {
-  width: 180px; height: 54px;
+  width: 220px; height: 60px;
   border: 0;
   display: grid; place-items: center;
   font-family: var(--font-display);
   font-size: 0.9rem;
   color: var(--gold);
   transform: none;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
 }
 .brand-logo-img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center;
@@ -1275,7 +1276,7 @@ footer {
   body { cursor: auto; }
   .cursor, .cursor-ring, .cursor-trail { display: none; }
   nav { padding: 0 18px; height: 60px; }
-  .logo-mark { width: 132px; height: 42px; }
+  .logo-mark { width: 168px; height: 48px; }
   .nav-links, .btn-nav { display: none; }
   .hamburger { display: flex; }
   .mobile-menu { padding: 72px 20px 36px; overflow-y: auto; }
@@ -1337,7 +1338,7 @@ footer {
 
 @media (max-width: 480px) {
   nav { padding: 0 14px; }
-  .logo-mark { width: 116px; height: 38px; }
+  .logo-mark { width: 148px; height: 44px; }
   section { padding: 58px 16px; }
   .section-label { font-size: 0.62rem; letter-spacing: 0.16em; align-items: flex-start; }
   .gold-line { width: 28px; margin-right: 9px; margin-top: 0.58em; }
