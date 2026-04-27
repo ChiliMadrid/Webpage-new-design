@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment | CM Strength</title>
+<meta name="description" content="CM Strength secure checkout mockup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body data-page="payment">
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="site-header"></div>
+<div id="page-payment" class="page active">
+  <section class="payment-page">
+    <div class="payment-shell">
+      <div class="payment-visual">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80" alt="Secure online payment desk setup">
+        <div class="payment-visual-copy">
+          <span class="payment-kicker">CM Strength</span>
+          <h1>Secure Checkout</h1>
+          <p>This mock payment screen represents where Stripe checkout will be connected.</p>
+        </div>
+      </div>
+
+      <div class="payment-panel">
+        <div class="payment-badge">Stripe-style mockup</div>
+        <h2>Complete Payment</h2>
+        <p class="payment-subtext">Review your coaching package, then enter payment details. This page is a visual mockup and does not process live payments yet.</p>
+
+        <div class="payment-summary">
+          <div>
+            <span>Selected service</span>
+            <strong>CM Strength Coaching</strong>
+          </div>
+          <div>
+            <span>Due today</span>
+            <strong>$150+</strong>
+          </div>
+        </div>
+
+        <form class="payment-form">
+          <div class="form-field full">
+            <label class="form-label" for="payEmail">Email</label>
+            <input class="form-input" id="payEmail" type="email" placeholder="client@email.com">
+          </div>
+          <div class="form-field full">
+            <label class="form-label" for="payCard">Card Number</label>
+            <input class="form-input" id="payCard" type="text" inputmode="numeric" placeholder="4242 4242 4242 4242">
+          </div>
+          <div class="payment-fields">
+            <div class="form-field">
+              <label class="form-label" for="payExpiry">Expiry</label>
+              <input class="form-input" id="payExpiry" type="text" placeholder="MM / YY">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="payCvc">CVC</label>
+              <input class="form-input" id="payCvc" type="text" inputmode="numeric" placeholder="123">
+            </div>
+          </div>
+          <button class="btn btn-gold btn-full" type="button">
+            <span>Pay Securely</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+<div id="site-footer"></div>
+</body>
+</html>

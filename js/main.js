@@ -48,6 +48,7 @@ const PAGE_ROUTES = {
   blog: 'blog.html',
   cart: 'cart.html',
   intake: 'intake.html',
+  payment: 'payment.html',
   inquire: 'contact.html'
 };
 
@@ -445,6 +446,9 @@ function wireIntakeForm() {
     const subject = encodeURIComponent('CM Strength client intake form');
     const body = encodeURIComponent(lines.join('\n'));
     window.location.href = `mailto:madridchili96@gmail.com?subject=${subject}&body=${body}`;
+    setTimeout(() => {
+      window.location.href = sitePath('payment.html');
+    }, 900);
   });
 }
 
