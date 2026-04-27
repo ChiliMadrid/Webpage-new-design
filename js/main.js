@@ -215,15 +215,7 @@ function checkoutCart() {
   if (!items.length) return;
 
   const hasCoaching = items.some(item => item.type === 'Coaching');
-  const nextItems = items.map(item => (
-    item.type === 'PDF Program' ? { ...item, purchased: true } : item
-  ));
-  saveCart(nextItems);
-  renderCart();
-
-  if (hasCoaching) {
-    window.location.href = sitePath('intake.html');
-  }
+  window.location.href = sitePath(hasCoaching ? 'intake.html' : 'payment.html');
 }
 
 function wireCart() {
