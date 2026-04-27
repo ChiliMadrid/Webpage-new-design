@@ -343,7 +343,7 @@ async function loadSharedPartials() {
 
 function initSharedAssetPaths() {
   document.querySelectorAll('.brand-logo-img, .footer-logo-img').forEach(img => {
-    img.setAttribute('src', sitePath('assets/logo.png'));
+    img.setAttribute('src', sitePath('assets/mainlogo.png'));
   });
 }
 
