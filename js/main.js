@@ -53,10 +53,10 @@ const PAGE_ROUTES = {
 };
 
 const PAYMENT_PACKAGES = {
-  'coaching-virtual': { label: 'Virtual Coaching', amount: '$150' },
-  'coaching-body-profile': { label: 'Body Profile', amount: '$300' },
-  'coaching-hybrid': { label: 'Hybrid Coaching', amount: '$450' },
-  'coaching-s-tier': { label: 'S-Tier', amount: '$600' }
+  'coaching-virtual': { label: { en: 'Virtual Coaching', ko: '버추얼 코칭' }, amount: '$150' },
+  'coaching-body-profile': { label: { en: 'Body Profile', ko: '바디프로필' }, amount: '$300' },
+  'coaching-hybrid': { label: { en: 'Hybrid Coaching', ko: '하이브리드 코칭' }, amount: '$450' },
+  'coaching-s-tier': { label: { en: 'S-Tier', ko: 'S-Tier' }, amount: '$600' }
 };
 
 function currentPageName() {
@@ -454,7 +454,7 @@ async function submitSiteForm(form, formType, statusId) {
 
   if (statusEl) {
     statusEl.classList.remove('is-error');
-    statusEl.textContent = formType === 'intake' ? 'Sending intake securely...' : 'Sending message...';
+    statusEl.textContent = localizedFormMessage(formType === 'intake' ? 'intakeSending' : 'contactSending');
   }
   if (submitButton) submitButton.disabled = true;
 
@@ -468,20 +468,45 @@ async function submitSiteForm(form, formType, statusId) {
     if (!response.ok || !result.ok) throw new Error(result.error || 'Unable to send right now.');
 
     if (statusEl) {
-      statusEl.textContent = formType === 'intake'
-        ? 'Intake sent. Redirecting to checkout...'
-        : 'Message sent. I will reply as soon as possible.';
+      statusEl.textContent = localizedFormMessage(formType === 'intake' ? 'intakeSent' : 'contactSent');
     }
     form.reset();
     return true;
   } catch (error) {
     if (statusEl) {
       statusEl.classList.add('is-error');
-      statusEl.textContent = `${error.message} You can also email ${CONTACT_EMAIL}.`;
+      statusEl.textContent = `${error.message} ${localizedFormMessage('emailFallback')}`;
     }
     if (submitButton) submitButton.disabled = false;
     return false;
   }
+}
+
+function localizedFormMessage(key) {
+  const messages = {
+    contactSending: {
+      en: 'Sending message...',
+      ko: '메시지를 보내는 중...'
+    },
+    intakeSending: {
+      en: 'Sending intake securely...',
+      ko: '인테이크 양식을 안전하게 보내는 중...'
+    },
+    contactSent: {
+      en: 'Message sent. I will reply as soon as possible.',
+      ko: '메시지가 전송되었습니다. 가능한 한 빨리 답변드리겠습니다.'
+    },
+    intakeSent: {
+      en: 'Intake sent. Redirecting to checkout...',
+      ko: '인테이크 양식이 전송되었습니다. 결제 페이지로 이동합니다...'
+    },
+    emailFallback: {
+      en: `You can also email ${CONTACT_EMAIL}.`,
+      ko: `${CONTACT_EMAIL}로 직접 이메일을 보내셔도 됩니다.`
+    }
+  };
+
+  return messages[key]?.[currentLang] || messages[key]?.en || '';
 }
 
 function wireStripeCheckoutForm() {
@@ -525,10 +550,10 @@ function wireStripeCheckoutForm() {
     }
 
     const selected = PAYMENT_PACKAGES[packageEl?.value] || PAYMENT_PACKAGES['coaching-virtual'];
-    if (serviceEl) serviceEl.textContent = selected.label;
+    if (serviceEl) serviceEl.textContent = selected.label?.[currentLang] || selected.label?.en || selected.label;
     if (amountEl) amountEl.textContent = selected.amount;
     if (packageEl) packageEl.closest('.form-field')?.classList.remove('is-hidden');
-    if (cartSummaryEl) cartSummaryEl.textContent = 'No cart items found. Choose a coaching package below.';
+    if (cartSummaryEl) cartSummaryEl.textContent = localizedPaymentMessage('emptyCart');
   };
 
   packageEl?.addEventListener('change', syncSummary);
@@ -538,12 +563,12 @@ function wireStripeCheckoutForm() {
     event.preventDefault();
     const items = checkoutItems();
     const hasCartItems = items.length > 0;
-    if (statusEl) statusEl.textContent = 'Creating secure Stripe Checkout...';
+    if (statusEl) statusEl.textContent = localizedPaymentMessage('creatingCheckout');
     if (submitButton) submitButton.disabled = true;
 
     try {
       if (hasCartItems && items.some(item => !item.productKey)) {
-        throw new Error('One or more cart items is missing secure checkout data. Please remove it and add it again.');
+        throw new Error(localizedPaymentMessage('missingCartData'));
       }
 
       const response = await fetch('/api/create-checkout-session', {
@@ -556,7 +581,7 @@ function wireStripeCheckoutForm() {
         })
       });
       const data = await response.json();
-      if (!response.ok || !data.url) throw new Error(data.error || 'Checkout is not available yet.');
+      if (!response.ok || !data.url) throw new Error(data.error || localizedPaymentMessage('checkoutUnavailable'));
       window.location.href = data.url;
     } catch (error) {
       if (statusEl) statusEl.textContent = error.message;
@@ -571,7 +596,7 @@ async function fulfillCheckoutSession() {
 
   const sessionId = new URLSearchParams(window.location.search).get('session_id');
   if (!sessionId) {
-    statusEl.textContent = 'Payment confirmed. If you purchased a PDF, check your email shortly.';
+    statusEl.textContent = localizedPaymentMessage('paymentConfirmed');
     return;
   }
 
@@ -586,11 +611,50 @@ async function fulfillCheckoutSession() {
     if (!response.ok) throw new Error(data.error || 'Delivery confirmation is still processing.');
 
     statusEl.textContent = data.delivered
-      ? 'PDF delivery has been triggered. Check your inbox and spam folder.'
-      : 'Payment confirmed. Coaching clients will receive next steps by email.';
+      ? localizedPaymentMessage('pdfDeliveryTriggered')
+      : localizedPaymentMessage('coachingNextSteps');
   } catch (error) {
-    statusEl.textContent = `${error.message} If your email does not arrive, contact coach.cmstrength@gmail.com with your checkout reference.`;
+    statusEl.textContent = `${error.message} ${localizedPaymentMessage('deliveryFallback')}`;
   }
+}
+
+function localizedPaymentMessage(key) {
+  const messages = {
+    emptyCart: {
+      en: 'No cart items found. Choose a coaching package below.',
+      ko: '장바구니 항목이 없습니다. 아래에서 코칭 패키지를 선택하세요.'
+    },
+    creatingCheckout: {
+      en: 'Creating secure Stripe Checkout...',
+      ko: '안전한 Stripe 결제를 생성하는 중...'
+    },
+    paymentConfirmed: {
+      en: 'Payment confirmed. If you purchased a PDF, check your email shortly.',
+      ko: '결제가 확인되었습니다. PDF를 구매했다면 곧 이메일을 확인해 주세요.'
+    },
+    pdfDeliveryTriggered: {
+      en: 'PDF delivery has been triggered. Check your inbox and spam folder.',
+      ko: 'PDF 발송이 시작되었습니다. 받은편지함과 스팸함을 확인해 주세요.'
+    },
+    coachingNextSteps: {
+      en: 'Payment confirmed. Coaching clients will receive next steps by email.',
+      ko: '결제가 확인되었습니다. 코칭 고객은 이메일로 다음 단계 안내를 받게 됩니다.'
+    },
+    deliveryFallback: {
+      en: 'If your email does not arrive, contact coach.cmstrength@gmail.com with your checkout reference.',
+      ko: '이메일이 도착하지 않으면 결제 참조 번호와 함께 coach.cmstrength@gmail.com으로 연락해 주세요.'
+    },
+    missingCartData: {
+      en: 'One or more cart items is missing secure checkout data. Please remove it and add it again.',
+      ko: '장바구니 항목 중 일부에 안전 결제 정보가 없습니다. 해당 항목을 삭제한 뒤 다시 추가해 주세요.'
+    },
+    checkoutUnavailable: {
+      en: 'Checkout is not available yet.',
+      ko: '아직 결제를 사용할 수 없습니다.'
+    }
+  };
+
+  return messages[key]?.[currentLang] || messages[key]?.en || '';
 }
 
 function initFloatingSocials() {

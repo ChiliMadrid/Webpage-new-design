@@ -34,23 +34,23 @@
         <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80" alt="Secure online payment desk setup">
         <div class="payment-visual-copy">
           <span class="payment-kicker">CM Strength</span>
-          <h1>Secure Checkout</h1>
-          <p>Payment details are collected on Stripe-hosted Checkout, not on this website.</p>
+          <h1 data-en="Secure Checkout" data-ko="안전한 결제">Secure Checkout</h1>
+          <p data-en="Payment details are collected on Stripe-hosted Checkout, not on this website." data-ko="결제 정보는 이 웹사이트가 아닌 Stripe 호스팅 결제 페이지에서 입력됩니다.">Payment details are collected on Stripe-hosted Checkout, not on this website.</p>
         </div>
       </div>
 
       <div class="payment-panel">
-        <div class="payment-badge">Stripe Checkout</div>
-        <h2>Complete Payment</h2>
-        <p class="payment-subtext">Review your cart, then continue to Stripe's hosted payment page. Card details are handled by Stripe.</p>
+        <div class="payment-badge" data-en="Stripe Checkout" data-ko="Stripe 결제">Stripe Checkout</div>
+        <h2 data-en="Complete Payment" data-ko="결제 완료하기">Complete Payment</h2>
+        <p class="payment-subtext" data-en="Review your cart, then continue to Stripe's hosted payment page. Card details are handled by Stripe." data-ko="장바구니를 확인한 뒤 Stripe 호스팅 결제 페이지로 이동하세요. 카드 정보는 Stripe에서 처리됩니다.">Review your cart, then continue to Stripe's hosted payment page. Card details are handled by Stripe.</p>
 
         <div class="payment-summary">
           <div>
-            <span>Selected service</span>
+            <span data-en="Selected service" data-ko="선택한 서비스">Selected service</span>
             <strong id="paymentServiceLabel">Virtual Coaching</strong>
           </div>
           <div>
-            <span>Due today</span>
+            <span data-en="Due today" data-ko="오늘 결제 금액">Due today</span>
             <strong id="paymentAmountLabel">$150</strong>
           </div>
         </div>
@@ -58,20 +58,20 @@
 
         <form class="payment-form" id="stripeCheckoutForm">
           <div class="form-field full">
-            <label class="form-label" for="payEmail">Email</label>
-            <input class="form-input" id="payEmail" name="email" type="email" autocomplete="email" required placeholder="client@email.com">
+            <label class="form-label" for="payEmail" data-en="Email" data-ko="이메일">Email</label>
+            <input class="form-input" id="payEmail" name="email" type="email" autocomplete="email" required data-placeholder-en="client@email.com" data-placeholder-ko="client@email.com">
           </div>
           <div class="form-field full">
-            <label class="form-label" for="paymentPackage">Package</label>
+            <label class="form-label" for="paymentPackage" data-en="Package" data-ko="패키지">Package</label>
             <select class="form-select2" id="paymentPackage" name="package" required>
-              <option value="coaching-virtual">Virtual Coaching - $150</option>
-              <option value="coaching-body-profile">Body Profile - $300</option>
-              <option value="coaching-hybrid">Hybrid Coaching - $450</option>
-              <option value="coaching-s-tier">S-Tier - $600</option>
+              <option value="coaching-virtual" data-en="Virtual Coaching - $150" data-ko="버추얼 코칭 - $150">Virtual Coaching - $150</option>
+              <option value="coaching-body-profile" data-en="Body Profile - $300" data-ko="바디프로필 - $300">Body Profile - $300</option>
+              <option value="coaching-hybrid" data-en="Hybrid Coaching - $450" data-ko="하이브리드 코칭 - $450">Hybrid Coaching - $450</option>
+              <option value="coaching-s-tier" data-en="S-Tier - $600" data-ko="S-Tier - $600">S-Tier - $600</option>
             </select>
           </div>
           <button class="btn btn-gold btn-full" type="submit">
-            <span>Continue to Stripe</span>
+            <span data-en="Continue to Stripe" data-ko="Stripe로 계속하기">Continue to Stripe</span>
             <span class="btn-arrow">→</span>
           </button>
           <p class="payment-status" id="paymentStatus" role="status"></p>
