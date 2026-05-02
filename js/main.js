@@ -509,6 +509,14 @@ function localizedFormMessage(key) {
   return messages[key]?.[currentLang] || messages[key]?.en || '';
 }
 
+function prefillContactMessageFromQuery() {
+  const messageEl = document.getElementById('contactMessage');
+  if (!messageEl || messageEl.value) return;
+
+  const message = new URLSearchParams(window.location.search).get('message');
+  if (message) messageEl.value = message;
+}
+
 function wireStripeCheckoutForm() {
   const form = document.getElementById('stripeCheckoutForm');
   if (!form) return;
@@ -749,6 +757,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initLogoFallback();
   wireSharedEvents();
   wireContactForm();
+  prefillContactMessageFromQuery();
   wireIntakeForm();
   wireStripeCheckoutForm();
   initFloatingSocials();

@@ -108,7 +108,7 @@ nav {
 }
 nav.scrolled {
   background: rgba(7,7,7,0.95);
-  border-color: var(--border);
+  border-color: transparent;
   backdrop-filter: blur(20px);
 }
 .nav-logo {
@@ -122,7 +122,7 @@ nav.scrolled {
 }
 .nav-logo span { color: var(--gold); }
 .logo-mark {
-  width: 220px; height: 60px;
+  width: 180px; height: 48px;
   border: 0;
   display: grid; place-items: center;
   font-family: var(--font-display);
@@ -139,6 +139,7 @@ nav.scrolled {
   object-fit: contain;
   object-position: center;
   display: block;
+  transform: translateY(-32px);
 }
 .logo-fallback { display: none; }
 .logo-missing .logo-fallback { display: inline; }
@@ -439,6 +440,42 @@ p { color: var(--text-muted); line-height: 1.85; }
   color: var(--gold); margin-bottom: 2rem;
   display: flex; align-items: center; justify-content: center; gap: 16px;
   animation: fadeUp 1s ease 0.2s both;
+}
+.founding-offer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  max-width: min(760px, calc(100vw - 12vw));
+  min-height: 104px;
+  margin: 0 auto 1.55rem;
+  padding: 20px 28px;
+  border: 1px solid rgba(201,168,76,0.58);
+  color: var(--gold-light);
+  background: rgba(7,7,7,0.72);
+  font-size: 1.04rem;
+  line-height: 1.5;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  box-shadow: 0 0 30px rgba(201,168,76,0.16);
+  animation: offerRise 1s ease 0.1s both, offerGlow 3.8s ease-in-out 1.2s infinite;
+}
+.founding-offer > span {
+  flex: 1 1 auto;
+}
+.founding-offer-btn {
+  flex: 0 0 auto;
+  padding: 12px 22px;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+@keyframes offerRise {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes offerGlow {
+  0%, 100% { box-shadow: 0 0 24px rgba(201,168,76,0.14); border-color: rgba(201,168,76,0.48); }
+  50% { box-shadow: 0 0 42px rgba(201,168,76,0.3); border-color: rgba(232,201,122,0.76); }
 }
 .hero-eyebrow::before, .hero-eyebrow::after {
   content:''; display: inline-block; width: 30px; height: 1px; background: var(--gold);
@@ -1310,7 +1347,8 @@ footer {
   body { cursor: auto; }
   .cursor, .cursor-ring, .cursor-trail { display: none; }
   nav { padding: 0 18px; height: 60px; }
-  .logo-mark { width: 168px; height: 48px; }
+  .logo-mark { width: 142px; height: 40px; }
+  .brand-logo-img { transform: translateY(-20px); }
   .nav-links, .btn-nav { display: none; }
   .hamburger { display: flex; }
   .mobile-menu { padding: 72px 20px 36px; overflow-y: auto; }
@@ -1322,6 +1360,8 @@ footer {
   .hero { min-height: 92vh; padding: 0 20px; }
   .hero-content { padding-top: 60px; }
   .hero-subtitle { max-width: 34rem; font-size: 0.94rem; line-height: 1.75; margin: 1.4rem auto; }
+  .founding-offer { flex-direction: column; max-width: min(560px, calc(100vw - 36px)); min-height: 142px; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 1.1rem; padding: 18px 16px; gap: 14px; }
+  .founding-offer-btn { width: auto; min-width: 150px; padding: 11px 18px; }
   .hero-eyebrow { gap: 10px; letter-spacing: 0.18em; margin-bottom: 1.4rem; }
   .hero-eyebrow::before, .hero-eyebrow::after { width: 18px; }
   .hero-photo-track img { flex-basis: 64vw; }
@@ -1372,7 +1412,8 @@ footer {
 
 @media (max-width: 480px) {
   nav { padding: 0 14px; }
-  .logo-mark { width: 148px; height: 44px; }
+  .logo-mark { width: 124px; height: 36px; }
+  .brand-logo-img { transform: translateY(-16px); }
   section { padding: 58px 16px; }
   .section-label { font-size: 0.62rem; letter-spacing: 0.16em; align-items: flex-start; }
   .gold-line { width: 28px; margin-right: 9px; margin-top: 0.58em; }
